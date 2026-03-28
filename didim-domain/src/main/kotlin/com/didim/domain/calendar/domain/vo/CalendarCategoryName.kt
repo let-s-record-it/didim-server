@@ -1,9 +1,10 @@
-package com.didim.domain.calendar.domain
+package com.didim.domain.calendar.domain.vo
 
 import com.didim.common.exception.AppException
 import com.didim.common.exception.ErrorType
 
-data class CalendarCategoryName(
+@JvmInline
+value class CalendarCategoryName(
     val name: String,
 ) {
     companion object {

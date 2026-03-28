@@ -1,8 +1,7 @@
-package com.didim.domain.calendar.domain
+package com.didim.domain.calendar.domain.vo
 
 import com.didim.common.exception.AppException
 import com.didim.common.exception.ErrorType
-
 
 @JvmInline
 value class CalendarTitle(

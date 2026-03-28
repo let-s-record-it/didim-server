@@ -1,9 +1,10 @@
-package com.didim.domain.calendar.domain
+package com.didim.domain.calendar.domain.vo
 
 import com.didim.common.exception.AppException
 import com.didim.common.exception.ErrorType
 
-data class CalendarColorHex(
+@JvmInline
+value class CalendarColorHex(
     val colorHex: String
 ) {
     companion object {

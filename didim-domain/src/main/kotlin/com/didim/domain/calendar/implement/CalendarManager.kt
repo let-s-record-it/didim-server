@@ -12,11 +12,14 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 class CalendarManager(
     private val calendarRepository: CalendarRepository,
+    private val calendarCategoryManager: CalendarCategoryManager,
 ) {
 
     fun create(newCalendar: NewCalendar) = calendarRepository.save(newCalendar)
 
-    fun find(id: Long) = calendarRepository.findById(id) ?: throw AppException(ErrorType.NOT_FOUND_DATA)
+    fun find(id: Long) {
+        calendarRepository.findById(id) ?: throw AppException(ErrorType.NOT_FOUND_DATA)
+    }
 
     fun modify(editCalendar: EditCalendar) = calendarRepository.update(editCalendar)
 }

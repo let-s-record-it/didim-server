@@ -1,5 +1,8 @@
 package com.didim.domain.calendar.domain
 
+import com.didim.domain.calendar.domain.vo.CalendarCategoryName
+import com.didim.domain.calendar.domain.vo.CalendarColorHex
+
 data class CalendarCategory(
     val colorHex: CalendarColorHex,
     val name: CalendarCategoryName,
