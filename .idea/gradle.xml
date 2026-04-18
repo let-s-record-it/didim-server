@@ -13,10 +13,13 @@
             <option value="$PROJECT_DIR$/didim-common" />
             <option value="$PROJECT_DIR$/didim-domain" />
             <option value="$PROJECT_DIR$/storage" />
+            <option value="$PROJECT_DIR$/storage/cloud" />
             <option value="$PROJECT_DIR$/storage/db-main" />
             <option value="$PROJECT_DIR$/support" />
+            <option value="$PROJECT_DIR$/support/alarm" />
             <option value="$PROJECT_DIR$/support/logging" />
             <option value="$PROJECT_DIR$/support/security" />
+            <option value="$PROJECT_DIR$/support/storage" />
           </set>
         </option>
       </GradleProjectSettings>

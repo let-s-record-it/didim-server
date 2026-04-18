@@ -12,14 +12,28 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 class CalendarManager(
     private val calendarRepository: CalendarRepository,
-    private val calendarCategoryManager: CalendarCategoryManager,
 ) {
+
+    @Transactional(readOnly = true)
+    fun find(id: Long) = calendarRepository.findById(id) ?: throw AppException(ErrorType.NOT_FOUND_DATA)
+
+    @Transactional(readOnly = true)
+    fun findCalendars(memberKey: String) = calendarRepository.findByMemberKey(memberKey)
 
     fun create(newCalendar: NewCalendar) = calendarRepository.save(newCalendar)
 
-    fun find(id: Long) {
-        calendarRepository.findById(id) ?: throw AppException(ErrorType.NOT_FOUND_DATA)
+    fun modify(editCalendar: EditCalendar) = calendarRepository.update(editCalendar)
+
+    fun modifyCategories(categoryId: Long, newCategoryId: Long) =
+        calendarRepository.updateCategories(categoryId, newCategoryId)
+
+    fun remove(calendarId: Long) {
+        calendarRepository.delete(calendarId)
     }
 
-    fun modify(editCalendar: EditCalendar) = calendarRepository.update(editCalendar)
+    fun validateOwner(id: Long, memberKey: String) {
+        if (!find(id).isOwner(memberKey)) {
+            throw AppException(ErrorType.INVALID_CALENDAR_GET_REQUEST)
+        }
+    }
 }

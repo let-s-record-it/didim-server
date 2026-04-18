@@ -27,4 +27,9 @@ internal abstract class BaseEntity(
 
     @Column
     var deletedAt: LocalDateTime? = null
+
+    fun delete() {
+        this.status = EntityStatus.DELETED
+        deletedAt = LocalDateTime.now()
+    }
 }

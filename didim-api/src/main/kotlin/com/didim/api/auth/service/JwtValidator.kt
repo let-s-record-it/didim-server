@@ -1,8 +1,11 @@
 package com.didim.api.auth.service
 
-import com.didim.api.auth.enums.TokenType
+import com.didim.common.enums.TokenType
 import com.didim.common.exception.AppException
 import com.didim.common.exception.ErrorType
+import com.didim.domain.auth.domain.IdToken
+import com.didim.domain.auth.domain.OidcPublicKeys
+import com.didim.domain.auth.implement.AuthTokenValidator
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jws
@@ -10,18 +13,23 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.MalformedJwtException
 import io.jsonwebtoken.UnsupportedJwtException
 import org.springframework.stereotype.Component
+import java.math.BigInteger
+import java.security.KeyFactory
+import java.security.PublicKey
 import java.security.SignatureException
+import java.security.spec.RSAPublicKeySpec
 import javax.crypto.SecretKey
+import kotlin.io.encoding.Base64
 
 @Component
 class JwtValidator(
     private val secretKey: SecretKey,
-) {
+) : AuthTokenValidator {
     companion object {
         private const val BEARER = "Bearer "
     }
 
-    fun getSubjectIfValidWithType(
+    override fun getSubjectIfValidWithType(
         token: String,
         expectedType: TokenType,
     ) = validate(token)

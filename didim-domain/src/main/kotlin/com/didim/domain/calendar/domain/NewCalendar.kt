@@ -7,6 +7,18 @@ data class NewCalendar(
     val categoryId: Long,
     val memberKey: String,
 ) {
+    companion object {
+        fun of(
+            title: String,
+            categoryId: Long,
+            memberKey: String,
+        ) = NewCalendar(
+            title = CalendarTitle(title),
+            categoryId = categoryId,
+            memberKey = memberKey,
+        )
+    }
+
     val titleValue: String
         get() = title.title
 }

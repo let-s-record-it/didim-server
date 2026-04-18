@@ -1,28 +1,28 @@
 package com.didim.api.auth.service
 
-import com.didim.api.auth.enums.TokenType
+import com.didim.common.enums.TokenType
 import com.didim.common.exception.AppException
 import com.didim.common.exception.ErrorType
+import com.didim.domain.auth.implement.AuthTokenGenerator
 import com.didim.domain.member.domain.Jwt
 import io.jsonwebtoken.Jwts
 import org.springframework.stereotype.Component
 import java.time.Instant
-import java.util.Date
+import java.util.*
 import javax.crypto.SecretKey
-import kotlin.text.isBlank
 
 const val TOKEN_TYPE_CLAIM = "type"
 
 @Component
 class JwtGenerator(
     private val secretKey: SecretKey,
-) {
+) : AuthTokenGenerator {
     companion object {
         private const val ACCESS_TOKEN_VALIDATION_SECONDS = 60L * 60
         private const val REFRESH_TOKEN_VALIDATION_SECONDS = 60L * 60 * 24 * 30
     }
 
-    fun generateJwt(memberKey: String): Jwt {
+    override fun generateJwt(memberKey: String): Jwt {
         if (memberKey.isBlank()) {
             throw AppException(ErrorType.INVALID_MEMBER_KEY)
         }
@@ -30,6 +30,7 @@ class JwtGenerator(
         return Jwt(
             accessToken = buildToken(memberKey, TokenType.ACCESS, ACCESS_TOKEN_VALIDATION_SECONDS),
             refreshToken = buildToken(memberKey, TokenType.REFRESH, REFRESH_TOKEN_VALIDATION_SECONDS),
+            memberKey = memberKey,
         )
     }
 

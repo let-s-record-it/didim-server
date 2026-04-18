@@ -1,5 +1,7 @@
 package com.didim.dbmain.support.querydsl
 
+import com.didim.common.pagination.Page
+import com.didim.common.pagination.Pageable
 import com.querydsl.core.types.EntityPath
 import com.querydsl.core.types.Expression
 import com.querydsl.core.types.dsl.PathBuilder
@@ -19,6 +21,9 @@ abstract class QuerydslRepositorySupport(
     private lateinit var querydsl: Querydsl
     private lateinit var entityManager: EntityManager
     private lateinit var jpaQueryFactory: JPAQueryFactory
+
+    val queryFactory: JPAQueryFactory
+        get() = jpaQueryFactory
 
     @PersistenceContext
     fun setEntityManager(entityManager: EntityManager) {
@@ -45,4 +50,14 @@ abstract class QuerydslRepositorySupport(
     fun flush() = entityManager.flush()
 
     fun clear() = entityManager.clear()
+
+    protected fun <T> List<T>.toPage(pageable: Pageable): Page<T> {
+        val hasNext = size > pageable.limit
+
+        return Page(
+            content = if (hasNext) dropLast(1) else this,
+            pageable = pageable,
+            hasNext = hasNext
+        )
+    }
 }

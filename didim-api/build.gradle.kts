@@ -7,6 +7,7 @@ dependencies {
     implementation(project(":didim-common"))
     implementation(project(":didim-domain"))
     implementation(project(":storage:db-main"))
+    implementation(project(":storage:cloud"))
     implementation(project(":support:logging"))
 
     implementation("org.springframework.boot:spring-boot-starter-web")

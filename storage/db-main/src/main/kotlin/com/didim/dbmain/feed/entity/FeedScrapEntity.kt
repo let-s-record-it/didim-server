@@ -7,7 +7,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 
 @Table(name = "feed_scrap")
-class FeedScrapEntity(
+internal class FeedScrapEntity(
     @Column(nullable = false)
     var feedId: Long,
     @Column(nullable = false)

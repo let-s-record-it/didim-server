@@ -1,6 +1,6 @@
 package com.didim.dbmain.calendar.entity
 
-import com.didim.domain.calendar.domain.Calendar
+import com.didim.dbmain.base.BaseEntity
 import com.didim.domain.calendar.domain.NewCalendar
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -21,7 +21,7 @@ internal class CalendarEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "calendar_id")
     var id: Long? = null,
-) {
+) : BaseEntity() {
     companion object {
         fun from(calendar: NewCalendar) = CalendarEntity(
             title = calendar.titleValue,
@@ -29,13 +29,6 @@ internal class CalendarEntity(
             memberKey = calendar.memberKey,
         )
     }
-
-    fun toDomain() = Calendar.of(
-        id = id!!,
-        title = title,
-        categoryId = calendarCategoryId,
-        memberKey = memberKey,
-    )
 
     fun update(title: String, categoryId: Long) {
         this.title = title

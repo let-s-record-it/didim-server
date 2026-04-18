@@ -1,4 +1,10 @@
 package com.didim.domain.alarm.domain
 
-class AlarmLog {
+data class AlarmLog(
+    val alarmType: AlarmType,
+    val content: String,
+    val senderKey: String,
+    val receiverKey: String,
+    val id: Long? = null,
+) {
 }

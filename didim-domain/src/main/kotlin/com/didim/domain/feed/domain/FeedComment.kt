@@ -1,5 +1,7 @@
 package com.didim.domain.feed.domain
 
+import com.didim.domain.feed.domain.vo.FeedCommentContent
+
 data class FeedComment(
     val content: FeedCommentContent,
     val feedId: Long,

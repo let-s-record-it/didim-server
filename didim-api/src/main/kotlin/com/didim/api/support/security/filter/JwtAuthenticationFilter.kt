@@ -1,9 +1,9 @@
 package com.didim.api.support.security.filter
 
 import com.didim.api.auth.domain.AuthMember
-import com.didim.api.auth.enums.TokenType
+import com.didim.common.enums.TokenType
 import com.didim.api.auth.service.JwtValidator
-import com.didim.domain.member.implement.MemberFinder
+import com.didim.domain.member.implement.MemberManager
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -13,12 +13,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
-import kotlin.collections.emptyMap
 
 @Component
 class JwtAuthenticationFilter(
     private val jwtValidator: JwtValidator,
-    private val memberFinder: MemberFinder,
+    private val memberManager: MemberManager,
 ) : OncePerRequestFilter() {
     companion object {
         private val PERMIT_URLS =
@@ -49,7 +48,7 @@ class JwtAuthenticationFilter(
                 jwtValidator.getSubjectIfValidWithType(it, TokenType.ACCESS)
             }
 
-        memberFinder.find(subject).run {
+        memberManager.findByMemberKey(subject).run {
             val authorities = roles.map { SimpleGrantedAuthority(it.name) }
             val authMember = AuthMember(this, emptyMap(), authorities)
 

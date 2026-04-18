@@ -1,5 +1,7 @@
 package com.didim.dbmain.schedule.entity
 
+import com.didim.dbmain.base.BaseEntity
+import com.didim.domain.schedule.domain.ScheduleAlarm
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -10,7 +12,7 @@ import java.time.LocalDateTime
 
 @Table(name = "schedule_alarm")
 @Entity
-class ScheduleAlarmEntity(
+internal class ScheduleAlarmEntity(
     @Column(nullable = false)
     var alarmTime: LocalDateTime,
     @Column(nullable = false)
@@ -18,5 +20,11 @@ class ScheduleAlarmEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "schedule_alarm_id")
     var id: Long? = null,
-) {
+): BaseEntity() {
+    companion object {
+        fun of(scheduleAlarm: ScheduleAlarm, scheduleId: Long) = ScheduleAlarmEntity(
+            alarmTime = scheduleAlarm.time,
+            scheduleId = scheduleId,
+        )
+    }
 }

@@ -13,6 +13,7 @@ data class CalendarResponse(
             id = calendar.id,
             title = calendar.titleValue,
             categoryId = calendar.categoryId,
+            colorHex = calendar.categoryColorHex,
         )
     }
 }

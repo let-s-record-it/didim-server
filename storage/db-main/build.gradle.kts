@@ -10,6 +10,7 @@ val queryDslVersion: String by project
 
 dependencies {
     compileOnly(project(":didim-domain"))
+    implementation(project(":didim-common"))
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-neo4j")
 

@@ -20,6 +20,8 @@ enum class ErrorType(
     FILE_NOT_FOUND(HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.E500, "파일을 찾을 수 없습니다.", LogLevel.ERROR),
 
     IMAGE_UPLOAD_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.E500, "이미지 업로드에 실패했습니다.", LogLevel.ERROR),
+    INVALID_IMAGE_TYPE(HttpStatus.BAD_REQUEST, ErrorCode.E400, "지원하지 않는 이미지 형식입니다.", LogLevel.WARN),
+    INVALID_IMAGE_FILE_NAME(HttpStatus.BAD_REQUEST, ErrorCode.E400, "이미지 파일명이 비어있습니다.", LogLevel.WARN),
 
     // AUTH
     ID_TOKEN_UNSUPPORTED(HttpStatus.BAD_REQUEST, ErrorCode.E1000, "지원되지 않는 ID Token 입니다.", LogLevel.WARN),
@@ -40,6 +42,8 @@ enum class ErrorType(
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, ErrorCode.E2000, "요청한 멤버를 찾을 수 없습니다.", LogLevel.WARN),
     CAN_NOT_REJOIN(HttpStatus.BAD_REQUEST, ErrorCode.E2001, "재가입 할 수 없는 멤버입니다.", LogLevel.WARN),
     INVALID_MEMBER_KEY(HttpStatus.BAD_REQUEST, ErrorCode.E2002, "멤버 key가 유효하지 않습니다.", LogLevel.WARN),
+    INVALID_FOLLOW_REQUEST(HttpStatus.BAD_REQUEST, ErrorCode.E2003, "유효하지 않은 팔로우 요청입니다.", LogLevel.WARN),
+    INVALID_UNFOLLOW_REQUEST(HttpStatus.BAD_REQUEST, ErrorCode.E2004, "유효하지 않은 팔로우 취소 요청입니다.", LogLevel.WARN),
 
     // CALENDAR
     NULL_CALENDAR_TITLE(HttpStatus.BAD_REQUEST, ErrorCode.E3000, "캘린더 제목은 null일 수 없습니다.", LogLevel.WARN),
@@ -162,6 +166,7 @@ enum class ErrorType(
     NULL_FEED_COMMENT_CONTENT(HttpStatus.BAD_REQUEST, ErrorCode.E12010, "피드 댓글 내용은 null일 수 없습니다.", LogLevel.WARN),
     INVALID_FEED_COMMENT_CONTENT_LENGTH(HttpStatus.BAD_REQUEST, ErrorCode.E12011, "피드 댓글의 길이는 1000자를 넘을 수 없습니다.", LogLevel.WARN),
     FEED_COMMENT_NOT_FOUND(HttpStatus.BAD_REQUEST, ErrorCode.E12012, "요청한 피드 댓글을 찾을 수 없습니다.", LogLevel.WARN),
+    INVALID_FEED_MODIFY_REQUEST(HttpStatus.BAD_REQUEST, ErrorCode.E12013, "요청한 피드 댓글을 찾을 수 없습니다.", LogLevel.WARN),
 
     // INVITE
     INVITE_LOG_NOT_FOUND(HttpStatus.BAD_REQUEST, ErrorCode.E13000, "초대 이력을 찾을 수 없습니다.", LogLevel.WARN),

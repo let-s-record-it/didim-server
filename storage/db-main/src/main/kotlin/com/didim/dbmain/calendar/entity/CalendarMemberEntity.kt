@@ -1,5 +1,7 @@
 package com.didim.dbmain.calendar.entity
 
+import com.didim.dbmain.base.BaseEntity
+import com.didim.domain.calendar.domain.CalendarMember
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -17,5 +19,4 @@ internal class CalendarMemberEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "calendar_member_id")
     var id: Long? = null,
-) {
-}
+) : BaseEntity()

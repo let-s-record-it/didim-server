@@ -1,5 +1,6 @@
 package com.didim.dbmain.alarm.entity
 
+import com.didim.domain.alarm.domain.AlarmLog
 import com.didim.domain.alarm.domain.AlarmType
 import jakarta.persistence.*
 
@@ -22,4 +23,12 @@ class AlarmLogEntity(
     @Column(name = "alarm_log_id")
     var id: Long? = null,
 ) {
+    companion object {
+        fun from(alarmLog: AlarmLog) = AlarmLogEntity(
+            alarmType = alarmLog.alarmType,
+            content = alarmLog.content,
+            senderKey = alarmLog.senderKey,
+            receiverKey = alarmLog.receiverKey,
+        )
+    }
 }

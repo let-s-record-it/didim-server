@@ -12,6 +12,7 @@ class Member(
     val followerCount: Long,
     val followingCount: Long,
     val roles: Set<MemberRole>,
-    val id: Long? = null,
+    val activated: Boolean,
+    val id: Long,
 ) {
 }

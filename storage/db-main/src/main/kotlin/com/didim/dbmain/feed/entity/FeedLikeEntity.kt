@@ -7,7 +7,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 
 @Table(name = "feed_like")
-class FeedLikeEntity(
+internal class FeedLikeEntity(
     @Column(nullable = false)
     var feedId: Long,
     @Column(nullable = false)

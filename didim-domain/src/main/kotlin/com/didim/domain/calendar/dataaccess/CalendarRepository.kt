@@ -8,5 +8,8 @@ interface CalendarRepository {
 
     fun save(newCalendar: NewCalendar): Long
     fun findById(id: Long): Calendar?
+    fun findByMemberKey(memberKey: String): List<Calendar>
     fun update(editCalendar: EditCalendar)
+    fun updateCategories(categoryId: Long, newCategoryId: Long)
+    fun delete(calendarId: Long)
 }

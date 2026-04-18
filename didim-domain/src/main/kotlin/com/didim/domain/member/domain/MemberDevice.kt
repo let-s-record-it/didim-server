@@ -4,6 +4,6 @@ data class MemberDevice(
     val identifier: String,
     val model: String,
     val fcmToken: String,
-    val memberId: Long,
+    val memberKey: String,
     val id: Long? = null,
 )

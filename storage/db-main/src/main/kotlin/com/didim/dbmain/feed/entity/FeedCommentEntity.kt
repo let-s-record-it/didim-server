@@ -1,5 +1,6 @@
 package com.didim.dbmain.feed.entity
 
+import com.didim.dbmain.base.BaseEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -9,7 +10,7 @@ import jakarta.persistence.Table
 
 @Table(name = "feed_comment")
 @Entity
-class FeedCommentEntity(
+internal class FeedCommentEntity(
     @Column(nullable = false)
     var content: String,
     @Column(nullable = false)
@@ -19,5 +20,4 @@ class FeedCommentEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feed_comment_id")
     var id: Long? = null,
-) {
-}
+) : BaseEntity()

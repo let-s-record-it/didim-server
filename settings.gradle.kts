@@ -25,3 +25,6 @@ pluginManagement {
 }
 
 include("support:security")
+include("support:alarm")
+include("support:storage")
+include("storage:cloud")

@@ -7,15 +7,24 @@ data class CalendarCategory(
     val colorHex: CalendarColorHex,
     val name: CalendarCategoryName,
     val isDefault: Boolean,
-    val memberId: Long,
-    val id: Long? = null,
+    val memberKey: String,
+    val id: Long,
 ) {
-    constructor(colorHex: String, name: String, isDefault: Boolean, memberId: Long)
-            : this(CalendarColorHex(colorHex), CalendarCategoryName(name), isDefault, memberId)
+    companion object {
+        fun of(id: Long, colorHex: String, name: String, isDefault: Boolean, memberKey: String) = CalendarCategory(
+            id = id,
+            colorHex = CalendarColorHex(colorHex),
+            name = CalendarCategoryName(name),
+            isDefault = isDefault,
+            memberKey = memberKey,
+        )
+    }
 
     val colorHexValue: String
         get() = colorHex.colorHex
 
     val nameValue: String
         get() = name.name
+
+    fun isOwner(memberKey: String) = this.memberKey == memberKey
 }
